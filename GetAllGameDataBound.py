@@ -2,6 +2,18 @@
 import os
 import Fighting_games_bounds as fgb
 
+folder = "anygame"
+
+def anygame():
+    """create a list of csv files with matchupdata"""
+    list = []
+    print('Using the following files:')
+    for file in os.listdir(folder):
+        if file.lower().endswith('.csv'):
+            list.append(file)
+            print(file)
+    return list
+
 def streetfighter():
     """create a list of csv files with matchupdata"""
     list = []
@@ -23,10 +35,10 @@ def guiltygear():
     return list
 
 def main():
-    csv_list = streetfighter()
+    csv_list = anygame()
     for csv in csv_list:
         print(csv)
-        fgb.main_para("Street Fighter 5"+os.sep+csv)
+        fgb.main_para(folder+os.sep+csv)
         print('Finished: '+csv)
 
     print('Finished with everything.')
