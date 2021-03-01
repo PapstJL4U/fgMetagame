@@ -4,7 +4,8 @@ import urllib.request
 
 streetfighter5="https://game.capcom.com/cfn/sfv/stats/dia/"
 
-sf5_month = (201610,201611,201612,201701,201702,201703)
+sf5_month = (201610,201611,201612,201701,201702,201703,201704,201705,201706,201707,201708,201709,
+             201710,201711,201712,201801,201802,201803)
 for month in sf5_month:
     #get url and create readable xml file to extract matchup data
     url = urllib.request.urlopen(streetfighter5+str(month))

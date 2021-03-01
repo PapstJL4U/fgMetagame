@@ -15,6 +15,7 @@ def filelist():
 def main():
     csv_list = filelist()
     for csv in csv_list:
+        print(csv)
         fgb.main_para(csv)
         print('Finished: '+csv)
 

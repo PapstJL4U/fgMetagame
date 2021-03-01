@@ -1,8 +1,9 @@
 """A new way to look at fighting game balance. https://github.com/Blinkity/metagame"""
 
+#import matplotlib
 import pandas, os
 import seaborn as sns
-sns.set_context("paper", font_scale=0.8)
+sns.set_context("talk")
 import numpy as np
 import pulp
 from pulp import *
@@ -18,7 +19,7 @@ def makeMatchups(allRanks, selfRanks):
     return averagedMatchups
 
 def setupBasicProblem(matrix):
-    prob = LpProblem("rock_paper_scissors", LpMaximize)
+    prob = LpProblem("rock_paper_scissors", pulp.LpMaximize)
     the_vars = np.append(matrix.index.values, (["w"]))
     lp_vars = LpVariable.dicts("vrs", the_vars)
 #First add the objective function.
@@ -76,7 +77,7 @@ def plotIntervals(winRates,doSort,threshold):
     intervals['bar3'] = 1 - (intervals['bar1'] + intervals['bar2'])
     #Maybe we want to sort by max, min values, or maybe we just want to keep it in its matchup-chart-specified order.
     if doSort:
-        intervals = intervals.sort_values(by=['maxv','minv'])
+        intervals = intervals.sort_index(by=['maxv','minv'])
     else: #else reverse, it's weird
         intervals = intervals.reindex(index=intervals.index[::-1])
     img = intervals[['bar1','bar2','bar3']].plot(kind='barh',stacked=True, color=['w','g','w'], xticks = np.linspace(0,1,21), legend=False)
@@ -95,7 +96,7 @@ def makeMatchupsFromOverallBeatProbs(allRanks, overall_beat_probs):
 
 def main():
     #matplotlib.use('PS')
-    inputfile = "ggxrdrevelator.csv"
+    inputfile = "StreetFighter5-201703.csv"
     outputfile = inputfile[0:-4]+" Bounds"+".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
     matchups.index.name = "row_char"
