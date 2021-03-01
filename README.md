@@ -9,4 +9,6 @@ I made some changes:
 * added the option to parse multiple matchup.csv
 * still no cli or gui 
 
-I hope this is helpful. It has lots of examples! (aka trail&error)
+I hope this is helpful. It has lots of examples! (aka trail&error).
+
+USE Fighting_games_bounds.py for individual files or GetAllGameDataBound.py for a list of matchupcharts.
