@@ -12,3 +12,5 @@ I made some changes:
 I hope this is helpful. It has lots of examples! (aka trail&error).
 
 USE Fighting_games_bounds.py for individual files or GetAllGameDataBound.py for a list of matchupcharts.
+
+sfvmatchupdata_2021.py has additional requirements, that are written in the file in the subfolder.
