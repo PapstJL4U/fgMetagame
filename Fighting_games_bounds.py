@@ -95,7 +95,7 @@ def makeMatchupsFromOverallBeatProbs(allRanks, overall_beat_probs):
 
 def main():
     #matplotlib.use('PS')
-    inputfile = "ggxrdrevelator.csv"
+    inputfile = "matchups.csv"
     outputfile = inputfile[0:-4]+" Bounds"+".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
     matchups.index.name = "row_char"
