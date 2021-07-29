@@ -14,7 +14,6 @@ translation_dic = {'hnd': 'E.Honda',
                    'alx': 'Alex',
                    'gul': 'Guile',
                    'fan': 'FANG',
-                   'fan': 'Jam',
                    'g': 'G',
                    'cdy': 'Cody',
                    'zgf': 'Zangief',
@@ -40,5 +39,7 @@ translation_dic = {'hnd': 'E.Honda',
                    'skr': 'Sakura',
                    'mnt': 'Menat',
                    'gok': 'Akuma',
-                   'rsd': 'Rashid'
+                   'rsd': 'Rashid',
+                   'dan': 'Dan',
+                   'rse': 'Rose'
                    }

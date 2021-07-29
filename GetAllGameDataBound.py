@@ -12,7 +12,7 @@ def anygame():
         if file.lower().endswith('.csv'):
             list.append(file)
             print(file)
-    return list
+    return list , folder
 
 def streetfighter():
     """create a list of csv files with matchupdata"""
@@ -22,7 +22,7 @@ def streetfighter():
         if file.lower().endswith('.csv') and "streetfighter" in file.lower():
             list.append(file)
             print(file)
-    return list
+    return list, "Street Fighter 5"
 
 def guiltygear():
     """create a list of csv files with matchupdata"""
@@ -32,10 +32,11 @@ def guiltygear():
         if file.lower().endswith('.csv'):
             list.append(file)
             print(file)
-    return list
+    return list, "Guilty Gear"
 
 def main():
-    csv_list = anygame()
+    csv_list, folder = streetfighter()
+
     for csv in csv_list:
         print(csv)
         fgb.main_para(folder+os.sep+csv)
