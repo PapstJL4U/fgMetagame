@@ -44,3 +44,4 @@ idea/
 _windows/
 codestyes/
 *.xml
+venv/

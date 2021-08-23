@@ -1,11 +1,11 @@
 """A new way to look at fighting game balance. https://github.com/Blinkity/metagame"""
 
-import pandas, os
+import pandas
 import seaborn as sns
-sns.set_context("paper", font_scale=0.8)
 import numpy as np
-import pulp
 from pulp import *
+sns.set_context("paper", font_scale=0.8)
+
 
 def makeMatchups(allRanks, selfRanks):
     overall_beat_probs = (3.0/2.0)*selfRanks['beat_opponent_prob'] - 0.25

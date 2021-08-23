@@ -35,7 +35,7 @@ def guiltygear():
     return list, "Guilty Gear"
 
 def main():
-    csv_list, folder = streetfighter()
+    csv_list, folder = guiltygear()
 
     for csv in csv_list:
         print(csv)
