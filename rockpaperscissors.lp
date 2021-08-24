@@ -13,7 +13,7 @@ _C16: vrs_Faust >= 0
 _C17: vrs_Anji + vrs_Axl + vrs_Chipp + vrs_Faust + vrs_Gio + vrs_Gold
  + vrs_I_No + vrs_Ky + vrs_Leo + vrs_May + vrs_Millia + vrs_Nago + vrs_Pot
  + vrs_Ram + vrs_Sol + vrs_Zato=1 = 1
-_C18: 0.1 vrs_Anji - 0.4 vrs_Axl + 0.1 vrs_Chipp - 0.3 vrs_Faust - 0.1 vrs_Gio
+_C18: 0.1 vrs_Anji - 0.4 vrs_Axl + 0.2 vrs_Chipp - 0.3 vrs_Faust - 0.1 vrs_Gio
  - 0.3 vrs_I_No - 0.2 vrs_Ky - 0.2 vrs_Millia - 0.1 vrs_Nago - 0.2 vrs_Ram
  + 0.2 vrs_Sol - 0.2 vrs_Zato=1 - vrs_w >= 0
 _C19: - 0.2 vrs_Anji + 0.1 vrs_Axl - 0.2 vrs_Chipp - 0.3 vrs_Faust

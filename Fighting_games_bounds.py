@@ -64,6 +64,21 @@ def solveGameWithRowConstraint(matrix, rowname, constraint):
     return prob, game_val, strat_probs
 
 def getWinRates(rowname,matrix,division=10):
+    """
+    numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
+    startarray_like
+
+    start The starting value of the sequence.
+    stoparray_like
+
+    stop The end value of the sequence, unless endpoint is set to False. In that case,
+    the sequence consists of all but the last of num + 1 evenly spaced samples, so that stop is excluded.
+    Note that the step size changes when endpoint is False.
+    numint, optional
+
+    num Number of samples to generate. Default is 50. Must be non-negative.
+
+    """
     probs = np.linspace(0,1,division+1)
     return pandas.Series([solveGameWithRowConstraint(matrix, rowname, p)[1] for p in probs], index=probs, name=rowname)
 
@@ -103,7 +118,7 @@ def main():
     matchups.columns = matchups.index.values #need to use values so we can copy it and have two different names
     matchups.columns.name = "col_char"
     matchupPayoffs = 2*matchups - 1
-    allWinRates = getAllWinRates(matchupPayoffs,10)
+    allWinRates = getAllWinRates(matchupPayoffs,100)
     #Plot will output to postscript file
     img = plotIntervals(allWinRates,True,-0.02)
     img.get_figure().savefig(outputfile)
@@ -111,14 +126,15 @@ def main():
 
 def main_para(data):
     """enables the use of this module with parameters from the outside"""
+    samples = 100
     inputfile = data
-    outputfile = inputfile[0:-4]+" Bounds"+".pdf"
+    outputfile = inputfile[0:-4]+"_Bounds"+"_samples_"+str(sim)+".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
     matchups.index.name = "row_char"
     matchups.columns = matchups.index.values #need to use values so we can copy it and have two different names
     matchups.columns.name = "col_char"
     matchupPayoffs = 2*matchups - 1
-    allWinRates = getAllWinRates(matchupPayoffs,10)
+    allWinRates = getAllWinRates(matchupPayoffs,samples)
     #Plot will output to postscript file
     img = plotIntervals(allWinRates,True,-0.02)
     img.get_figure().savefig(outputfile)
