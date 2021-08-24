@@ -3,9 +3,10 @@
 import pandas
 import seaborn as sns
 import numpy as np
-from pulp import *
-sns.set_context("paper", font_scale=0.8)
-
+import pulp as plp
+sns.set_context(context="paper", font_scale=0.8)
+sns.set_style(style="darkgrid")
+sns.set_color_codes(palette='dark')
 
 def makeMatchups(allRanks, selfRanks):
     overall_beat_probs = (3.0/2.0)*selfRanks['beat_opponent_prob'] - 0.25
@@ -18,21 +19,21 @@ def makeMatchups(allRanks, selfRanks):
     return averagedMatchups
 
 def setupBasicProblem(matrix):
-    prob = LpProblem("rock_paper_scissors", LpMaximize)
+    prob = plp.LpProblem("rock_paper_scissors", plp.LpMaximize)
     the_vars = np.append(matrix.index.values, (["w"]))
-    lp_vars = LpVariable.dicts("vrs", the_vars)
+    lp_vars = plp.LpVariable.dicts("vrs", the_vars)
 #First add the objective function.
-    prob += lpSum([lp_vars['w']])  
+    prob += plp.lpSum([lp_vars['w']])
 #Now add the non-negativity constraints.
     for row_strat in matrix.index.values:
-        prob += lpSum([1.0 * lp_vars[row_strat]]) >= 0
+        prob += plp.lpSum([1.0 * lp_vars[row_strat]]) >= 0
 #Now add the sum=1 constraint.
-    prob += lpSum([1.0 * lp_vars[x] for x in matrix.index.values]) == 1
+    prob += plp.lpSum([1.0 * lp_vars[x] for x in matrix.index.values]) == 1
 #Now add the column payoff constraints
     for col_strat in matrix.columns.values:
         stratTerms = [matrix.loc[row_strat, col_strat] * lp_vars[row_strat] for row_strat in matrix.index.values]
         allTerms = stratTerms + [-1 * lp_vars['w']]
-        prob += lpSum(allTerms) >= 0
+        prob += plp.lpSum(allTerms) >= 0
 #now write it out and solve
     return prob, lp_vars
 
@@ -41,24 +42,24 @@ def solveGame(matrix):
     prob.writeLP("rockpaperscissors.lp")
     prob.solve()
 #now prepare the value and mixed strategy
-    game_val = value(lp_vars['w'])
+    game_val = plp.value(lp_vars['w'])
     strat_probs = {}
     for row_strat in matrix.index.values:
-        strat_probs[row_strat] = value(lp_vars[row_strat])
+        strat_probs[row_strat] = plp.value(lp_vars[row_strat])
 #and output it
     return prob, game_val, strat_probs
 
 def solveGameWithRowConstraint(matrix, rowname, constraint):
     prob, lp_vars = setupBasicProblem(matrix)
 #add the additional constraint
-    prob += lpSum(lp_vars[rowname]) == constraint
+    prob += plp.lpSum(lp_vars[rowname]) == constraint
     prob.writeLP("rockpaperscissors.lp")
     prob.solve()
 #now prepare the value and mixed strategy
-    game_val = value(lp_vars['w'])
+    game_val = plp.value(lp_vars['w'])
     strat_probs = {}
     for row_strat in matrix.index.values:
-        strat_probs[row_strat] = value(lp_vars[row_strat])
+        strat_probs[row_strat] = plp.value(lp_vars[row_strat])
 #and output it
     return prob, game_val, strat_probs
 
@@ -108,9 +109,9 @@ def main():
     img.get_figure().savefig(outputfile)
 
 
-def main_para(input):
+def main_para(data):
     """enables the use of this module with parameters from the outside"""
-    inputfile = input
+    inputfile = data
     outputfile = inputfile[0:-4]+" Bounds"+".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
     matchups.index.name = "row_char"
