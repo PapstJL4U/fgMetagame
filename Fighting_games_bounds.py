@@ -111,14 +111,15 @@ def makeMatchupsFromOverallBeatProbs(allRanks, overall_beat_probs):
 
 def main():
     #matplotlib.use('PS')
+    constrain = 10 
     inputfile = "matchups.csv"
-    outputfile = inputfile[0:-4]+" Bounds"+".pdf"
+    outputfile = inputfile[0:-4]+"_Bounds_constrain_"+str(constrain)+".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
     matchups.index.name = "row_char"
     matchups.columns = matchups.index.values #need to use values so we can copy it and have two different names
     matchups.columns.name = "col_char"
     matchupPayoffs = 2*matchups - 1
-    allWinRates = getAllWinRates(matchupPayoffs,100)
+    allWinRates = getAllWinRates(matchupPayoffs,constrain)
     #Plot will output to postscript file
     img = plotIntervals(allWinRates,True,-0.02)
     img.get_figure().savefig(outputfile)
@@ -126,15 +127,15 @@ def main():
 
 def main_para(data):
     """enables the use of this module with parameters from the outside"""
-    samples = 100
+    constrain = 10
     inputfile = data
-    outputfile = inputfile[0:-4]+"_Bounds"+"_samples_"+str(samples)+".pdf"
+    outputfile = inputfile[0:-4] +"_Bounds" +"_constrain_" + str(constrain) + ".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
     matchups.index.name = "row_char"
     matchups.columns = matchups.index.values #need to use values so we can copy it and have two different names
     matchups.columns.name = "col_char"
     matchupPayoffs = 2*matchups - 1
-    allWinRates = getAllWinRates(matchupPayoffs,samples)
+    allWinRates = getAllWinRates(matchupPayoffs, constrain)
     #Plot will output to postscript file
     img = plotIntervals(allWinRates,True,-0.02)
     img.get_figure().savefig(outputfile)
