@@ -127,7 +127,7 @@ def main():
 
 def main_para(data):
     """enables the use of this module with parameters from the outside"""
-    constrain = 10
+    constrain = 100
     inputfile = data
     outputfile = inputfile[0:-4] +"_Bounds" +"_constrain_" + str(constrain) + ".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
