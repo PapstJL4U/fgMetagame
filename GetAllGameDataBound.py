@@ -37,6 +37,9 @@ def guiltygear():
 def main():
     csv_list, folder = guiltygear()
 
+    #decomment and change below if you only want to use a single file
+    #csv_list = ["GuiltyGearStrive_J-Dawg1689.csv"]
+    #folder = "Guilty Gear"
     for csv in csv_list:
         print(csv)
         fgb.main_para(folder+os.sep+csv)

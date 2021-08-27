@@ -128,7 +128,7 @@ def main_para(data):
     """enables the use of this module with parameters from the outside"""
     samples = 100
     inputfile = data
-    outputfile = inputfile[0:-4]+"_Bounds"+"_samples_"+str(sim)+".pdf"
+    outputfile = inputfile[0:-4]+"_Bounds"+"_samples_"+str(samples)+".pdf"
     matchups = pandas.read_csv(inputfile, header=None, index_col = 0)
     matchups.index.name = "row_char"
     matchups.columns = matchups.index.values #need to use values so we can copy it and have two different names
