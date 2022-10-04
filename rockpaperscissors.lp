@@ -87,21 +87,21 @@ _C7: vrs_Chipp >= 0
 _C8: vrs_Faust >= 0
 _C9: vrs_Gio >= 0
 Bounds
-vrs_Anji free
-vrs_Axl free
-vrs_Chipp free
-vrs_Faust free
-vrs_Gio free
-vrs_Gold free
-vrs_Ino free
-vrs_Ky free
-vrs_Leo free
-vrs_May free
-vrs_Millia free
-vrs_Nago free
-vrs_Pot free
-vrs_Ram free
-vrs_Sol free
-vrs_Zato free
-vrs_w free
+ vrs_Anji free
+ vrs_Axl free
+ vrs_Chipp free
+ vrs_Faust free
+ vrs_Gio free
+ vrs_Gold free
+ vrs_Ino free
+ vrs_Ky free
+ vrs_Leo free
+ vrs_May free
+ vrs_Millia free
+ vrs_Nago free
+ vrs_Pot free
+ vrs_Ram free
+ vrs_Sol free
+ vrs_Zato free
+ vrs_w free
 End

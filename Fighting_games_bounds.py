@@ -1,5 +1,4 @@
 """A new way to look at fighting game balance. https://github.com/Blinkity/metagame"""
-
 import pandas
 import seaborn as sns
 import numpy as np

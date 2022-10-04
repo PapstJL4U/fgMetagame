@@ -1,9 +1,9 @@
 # metagame
 
 This is based on the original from https://github.com/Blinkity/metagame. However, it is old with very old versions, that don't really work anymore.
-I made some changes:
+I made some changes (04. Oct 2022):
 
-* usable with python 3.8 and most up2date package versions
+* usable with python 3.10 and most up2date package versions
 * corrected function calls and parameter for the newest package versions
 * added a requirements text with explicit version for easy install
 * added the option to parse multiple matchup.csv
